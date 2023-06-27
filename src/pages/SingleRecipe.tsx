@@ -37,11 +37,23 @@ const SingleRecipe: React.FC = () => {
 
   return (
     <>
-      <p>HEJHEJ</p>
       <Card key={recipe?.id} className="singleRecipe">
         <Card.Header className="align-items-center">
           <h3>{recipe?.title}</h3>
         </Card.Header>
+        <Card.Body>
+          <Card.Text>
+            <p>Ingredienser:</p>
+            <p>Gör så här: {recipe?.body}</p>
+            <img src={recipe?.image} alt={recipe?.title} />
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          {/*button for going back */}
+          <button type="button" className="btn" onClick={() => navigate(-1)}>
+            Tillbaka
+          </button>
+        </Card.Footer>
       </Card>
     </>
   );
