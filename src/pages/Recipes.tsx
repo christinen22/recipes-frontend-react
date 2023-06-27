@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { IRecipe } from "../types";
+import Search from "../components/Search";
 import { getRecipes } from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import { Col, Container, Row, Card } from "react-bootstrap";
 
 const Recipes: React.FC = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -90,14 +92,31 @@ const Recipes: React.FC = () => {
   }, [location.search]);
 
   return (
-    <div className="recipes">
-      <p>HEJ</p>
-      {recipes.length > 0 ? (
-        recipes.map((recipe) => <h5 key={recipe.id}>{recipe.title}</h5>)
-      ) : (
-        <p>Loading recipes...</p>
-      )}
-    </div>
+    <>
+      <Search onSearch={handleSearch} />
+
+      <div className="recipes">
+        <p>HEJ</p>
+
+        <Container>
+          <Row className="d-flex justify-content-center">
+            {recipes.map((recipe) => (
+              <Col xs={12} sm={4} md={4} key={recipe.id} className="m-3">
+                <Card className="recipeCard">
+                  <Card.Header className="align-items-center">
+                    <h5>{recipe.title}</h5>
+                    <img src={recipe.image} alt={recipe.title} />
+                    <NavLink to={`/recipes/${recipe.id}`} key={recipe.id}>
+                      Se recept!
+                    </NavLink>
+                  </Card.Header>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </div>
+    </>
   );
 };
 

@@ -17,10 +17,10 @@ export const getRecipes = async (query: string, page: number): Promise<IRecipesR
  * Get single recipe
  */
 
-export const getRecipe = async (id: number) => {
+export const getRecipe = async (id: number): Promise<IRecipe> => {
     const res = await axios.get(`${baseUrl}/recipes/${id}`)
 
-    return res.data
+    return res.data.data
 }
 
 /**
