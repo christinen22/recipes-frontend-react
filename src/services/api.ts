@@ -1,16 +1,16 @@
 import axios from "axios";
-import { IRecipe, ICategory, IRecipeResponse } from "../types";
+import { IRecipe, ICategory, IRecipesResponse } from "../types";
 
-export const baseUrl = 'http://127.0.0.1:8000/'
+export const baseUrl = 'http://188.166.168.10'
 
 /** 
  * Get Recipes
  */
 
-export const getRecipes = async () => {
-    const res = await axios.get(`${baseUrl}/recipes`)
+export const getRecipes = async (query: string, page: number): Promise<IRecipesResponse> => {
+    const res = await axios.get(`${baseUrl}/recipes/?search=${query}?page=${page}`)
 
-    return res.data
+    return res.data.data
 }
 
 /**

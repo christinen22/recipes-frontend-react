@@ -7,8 +7,8 @@ export interface IRecipe {
 }
 
 
-export interface IRecipeResponse {
-    data: IRecipes[],
+export interface IRecipesResponse {
+    data: IRecipe[],
     current_page: number,
     next_page_url: string,
     path: string,
