@@ -1,6 +1,7 @@
 export interface IRecipe {
     id: number,
     title: string,
+    ingredients: string,
     body: string,
     image: string,
     category_id: number,
@@ -21,4 +22,13 @@ export interface IRecipesResponse {
 export interface ICategory {
     id: number,
     name: string,
+}
+
+export interface FormData {
+    title: string;
+    category: string;
+    body: string;
+    ingredients: string;
+    category_id: string;
+    image: File | null;
 }

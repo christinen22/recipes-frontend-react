@@ -96,15 +96,13 @@ const Recipes: React.FC = () => {
       <Search onSearch={handleSearch} />
 
       <div className="recipes">
-        <p>HEJ</p>
-
         <Container>
           <Row className="d-flex justify-content-center">
             {recipes.map((recipe) => (
               <Col xs={12} sm={4} md={4} key={recipe.id} className="m-3">
                 <Card className="recipeCard">
                   <Card.Header className="align-items-center">
-                    <h5>{recipe.title}</h5>
+                    <h2>{recipe.title}</h2>
                     <img src={recipe.image} alt={recipe.title} />
                     <NavLink to={`/recipes/${recipe.id}`} key={recipe.id}>
                       Se recept!

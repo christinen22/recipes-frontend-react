@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getRecipe } from "../services/api";
-import { Card } from "react-bootstrap";
+import { Card, Col, Container, Button } from "react-bootstrap";
 import { IRecipe } from "../types";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -37,24 +37,29 @@ const SingleRecipe: React.FC = () => {
 
   return (
     <>
-      <Card key={recipe?.id} className="singleRecipe">
-        <Card.Header className="align-items-center">
-          <h3>{recipe?.title}</h3>
-        </Card.Header>
-        <Card.Body>
-          <Card.Text>
-            <p>Ingredienser:</p>
-            <p>Gör så här: {recipe?.body}</p>
-            <img src={recipe?.image} alt={recipe?.title} />
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          {/*button for going back */}
-          <button type="button" className="btn" onClick={() => navigate(-1)}>
-            Tillbaka
-          </button>
-        </Card.Footer>
-      </Card>
+      <Container>
+        <Col xs={12} sm={4} md={4} key={recipe?.id} className="m-3">
+          <Card key={recipe?.id} className="recipeCard">
+            <Card.Header className="align-items-center">
+              <h3>{recipe?.title}</h3>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text>
+                <p>Ingredienser: {recipe?.ingredients}</p>
+                <p>Gör så här: {recipe?.body}</p>
+                <Button
+                  type="button"
+                  className="btn"
+                  onClick={() => navigate(-1)}
+                >
+                  Tillbaka
+                </Button>
+                <img src={recipe?.image} alt={recipe?.title} />
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Container>
     </>
   );
 };
