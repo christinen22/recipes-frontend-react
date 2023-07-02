@@ -1,28 +1,46 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { createRecipe } from "../services/api";
-import { FormData } from "../types";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { createRecipe, getCategories } from "../services/api";
+import { ICategory } from "../types";
 
 const Form: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formInput, setFormInput] = useState({
     title: "",
     category: "",
     body: "",
     ingredients: "",
+    image: null as File | null,
     category_id: "",
-    image: null,
   });
+  const [categories, setCategories] = useState<ICategory[]>([]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getCategories();
+        console.log(response);
+
+        setCategories(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormInput({
+      ...formInput,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFormData({
-        ...formData,
+      setFormInput({
+        ...formInput,
         image: e.target.files[0],
       });
     }
@@ -33,25 +51,25 @@ const Form: React.FC = () => {
 
     try {
       const recipeData = new FormData();
-      recipeData.append("title", formData.title);
-      recipeData.append("category", formData.category);
-      recipeData.append("body", formData.body);
-      recipeData.append("ingredients", formData.ingredients);
-      recipeData.append("category_id", formData.category_id);
-      if (formData.image) {
-        recipeData.append("image", formData.image);
+      recipeData.append("title", formInput.title);
+      recipeData.append("category", formInput.category);
+      recipeData.append("body", formInput.body);
+      recipeData.append("ingredients", JSON.stringify(formInput.ingredients));
+      if (formInput.image) {
+        recipeData.append("image", formInput.image);
       }
+      recipeData.append("category_id", formInput.category_id);
 
-      const createdRecipe = await createRecipe(recipeData); // Use the createRecipe service function
+      const createdRecipe = await createRecipe(recipeData);
 
       console.log(createdRecipe);
-      setFormData({
+      setFormInput({
         title: "",
         category: "",
         body: "",
         ingredients: "",
-        category_id: "",
         image: null,
+        category_id: "",
       });
     } catch (error) {
       console.error(error);
@@ -63,27 +81,41 @@ const Form: React.FC = () => {
       <input
         type="text"
         name="title"
-        value={formData.title}
+        value={formInput.title}
         onChange={handleChange}
         placeholder="Recept"
       />
+      <select
+        name="category_id"
+        value={formInput.category_id}
+        onChange={handleChange}
+      >
+        <option value="">Välj kategori</option>
+        {categories.map((category) => (
+          <option key={category.id} value={category.id}>
+            {category.name}
+          </option>
+        ))}
+      </select>
       <input
         type="text"
         name="ingredients"
-        value={formData.ingredients}
+        value={formInput.ingredients}
         onChange={handleChange}
         placeholder="Ingredienser"
       />
       <input
         type="text"
         name="body"
-        value={formData.body}
+        value={formInput.body}
         onChange={handleChange}
         placeholder="Gör så här"
       />
+
       <input type="file" name="image" onChange={handleImageChange} />
       <button type="submit">Lägg till</button>
     </form>
   );
 };
+
 export default Form;

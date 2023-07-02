@@ -19,12 +19,15 @@ export interface IRecipesResponse {
     total: number
 }
 
-export interface ICategory {
-    id: number,
-    name: string,
+interface ICategory {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string | null;
+    recipes_count: number;
 }
 
-export interface FormData {
+export interface IFormData {
     title: string;
     category: string;
     body: string;

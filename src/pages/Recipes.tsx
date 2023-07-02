@@ -103,7 +103,10 @@ const Recipes: React.FC = () => {
                 <Card className="recipeCard">
                   <Card.Header className="align-items-center">
                     <h2>{recipe.title}</h2>
-                    <img src={recipe.image} alt={recipe.title} />
+                    <img
+                      src={`http://188.166.168.10/${recipe.image}`}
+                      alt={recipe.title}
+                    />
                     <NavLink to={`/recipes/${recipe.id}`} key={recipe.id}>
                       Se recept!
                     </NavLink>
