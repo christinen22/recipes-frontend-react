@@ -38,7 +38,7 @@ const SingleRecipe: React.FC = () => {
   return (
     <>
       <Container>
-        <Col xs={12} sm={4} md={4} key={recipe?.id} className="m-3">
+        <Col>
           <Card key={recipe?.id} className="recipeCard">
             <Card.Header className="align-items-center">
               <h3>{recipe?.title}</h3>
@@ -54,7 +54,10 @@ const SingleRecipe: React.FC = () => {
                 >
                   Tillbaka
                 </Button>
-                <img src={recipe?.image} alt={recipe?.title} />
+                <img
+                  src={`http://188.166.168.10/${recipe?.image}`}
+                  alt={recipe?.title}
+                />
               </Card.Text>
             </Card.Body>
           </Card>

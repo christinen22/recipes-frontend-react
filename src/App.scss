@@ -19,10 +19,11 @@
   }
 
   .recipeCard {
-    
-    min-height: 25rem;
+   margin-left: 2rem;
+    height: 75vh;
+    width: 75vw;
     border-radius: 2rem;
-    padding-right: 2rem;
+    //padding-right: 2rem;
     overflow: hidden;
     position: relative;
     color: white;
@@ -30,9 +31,24 @@
   
 }
 
-.recipeCard img {
+.recipeCards {
+
+    margin-left: 2rem;
+     height: 50vh;
+     width: auto;
+     border-radius: 2rem;
+     //padding-right: 2rem;
+     overflow: hidden;
+     position: relative;
+     color: white;
+     border: 1px solid black;
+   
+ 
+}
+
+.recipeCard img, .recipeCards img {
   
-    border-radius: 2rem;
+    
     position: absolute;
     left: 0;
     width: 100%;
@@ -60,14 +76,17 @@
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 } */
 
-.recipeCard a {
-  position:absolute;
+.recipes a {
+
   text-decoration: none;
   padding: 0.5rem;
+  border: 1px solid black;
   color: black;
   cursor: pointer;
   background-color: white;
   border-radius: 2rem;
+  margin-top: 2rem;
+
 }
 
 

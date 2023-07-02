@@ -100,18 +100,18 @@ const Recipes: React.FC = () => {
           <Row className="d-flex justify-content-center">
             {recipes.map((recipe) => (
               <Col xs={12} sm={4} md={4} key={recipe.id} className="m-3">
-                <Card className="recipeCard">
+                <Card className="recipeCards">
                   <Card.Header className="align-items-center">
                     <h2>{recipe.title}</h2>
                     <img
                       src={`http://188.166.168.10/${recipe.image}`}
                       alt={recipe.title}
                     />
-                    <NavLink to={`/recipes/${recipe.id}`} key={recipe.id}>
-                      Se recept!
-                    </NavLink>
                   </Card.Header>
                 </Card>
+                <NavLink to={`/recipes/${recipe.id}`} key={recipe.id}>
+                  Se recept!
+                </NavLink>
               </Col>
             ))}
           </Row>
