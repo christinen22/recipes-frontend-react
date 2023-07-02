@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IRecipe, ICategory, IRecipesResponse, FormData } from "../types";
+import { IRecipe, ICategory, IRecipesResponse, IFormData } from "../types";
 
 export const baseUrl = 'http://188.166.168.10'
 
@@ -47,11 +47,7 @@ export const getCategory = async (id: number) => {
  * Create new recipe
  */
 
-export const createRecipe = async (recipe: FormData): Promise<IRecipe> => {
-    const res = await axios.post(`${baseUrl}/recipes`, recipe, {
-        headers: {
-            "Content-Type": "multipart/form-data" // Set the correct content type for FormData
-        }
-    });
+export const createRecipe = async (formData: FormData): Promise<IRecipe> => {
+    const res = await axios.post(`${baseUrl}/recipes`, formData);
     return res.data;
 };
