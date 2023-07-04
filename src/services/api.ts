@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IRecipe, ICategory, IRecipesResponse, IFormData } from "../types";
+import { IRecipe, IRecipesResponse } from "../types";
 
 export const baseUrl = 'http://188.166.168.10'
 

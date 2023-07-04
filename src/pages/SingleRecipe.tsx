@@ -3,6 +3,8 @@ import { getRecipe } from "../services/api";
 import { Card, Col, Container, Button } from "react-bootstrap";
 import { IRecipe } from "../types";
 import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 interface RecipeDetails {
   id: string | undefined;
@@ -34,6 +36,14 @@ const SingleRecipe: React.FC = () => {
     };
     fetchSingleRecipe();
   }, [id]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <Error message={error || ""} />;
+  }
 
   return (
     <>

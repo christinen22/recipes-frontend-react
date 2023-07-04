@@ -3,7 +3,10 @@ import { IRecipe } from "../types";
 import Search from "../components/Search";
 import { getRecipes } from "../services/api";
 import { useNavigate, NavLink } from "react-router-dom";
-import { Col, Container, Row, Card } from "react-bootstrap";
+import { Col, Container, Row, Card, Button } from "react-bootstrap";
+import Pagination from "../components/Pagination";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 const Recipes: React.FC = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -91,43 +94,111 @@ const Recipes: React.FC = () => {
     }
   }, [location.search]);
 
+  if (isError) {
+    return <Error message={error || ""} />;
+  }
+
   return (
     <>
-      {/* <Search onSearch={handleSearch} /> */}
+      <Search onSearch={handleSearch} />
+      {loading && !(searchDone && searchResults.length > 0) && <Loading />}
 
-      <div className="recipes">
-        <Container fluid>
-          <Row
-            xs={1}
-            sm={2}
-            md={3}
-            lg={4}
-            xl={5}
-            className="justify-content-center"
-          >
-            {recipes.map((recipe) => (
-              <Col key={recipe.id} className="mb-4">
-                <Card>
-                  <Card.Img
-                    variant="top"
-                    src={`http://188.166.168.10/${recipe.image}`}
-                    alt={recipe.title}
-                  />
-                  <Card.Body>
-                    <Card.Title>{recipe.title}</Card.Title>
-                    <NavLink
-                      to={`/recipes/${recipe.id}`}
-                      className="btn btn-primary"
-                    >
-                      Se recept!
-                    </NavLink>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </div>
+      {searchDone ? (
+        searchResults.length > 0 ? (
+          <div className="recipes">
+            <Button className="btn" onClick={() => navigate(-1)}>
+              Tillbaka
+            </Button>
+            <h3>Sökresultat</h3>
+            <Container fluid>
+              <Row
+                xs={1}
+                sm={2}
+                md={3}
+                lg={4}
+                xl={5}
+                className="justify-content-center"
+              >
+                {searchResults.map((recipe) => (
+                  <Col key={recipe.id} className="mb-4">
+                    <Card>
+                      <Card.Img
+                        variant="top"
+                        src={`http://188.166.168.10/${recipe.image}`}
+                        alt={recipe.title}
+                      />
+                      <Card.Body>
+                        <Card.Title>{recipe.title}</Card.Title>
+                        <NavLink
+                          to={`/recipes/${recipe.id}`}
+                          className="btn btn-primary"
+                        >
+                          Se recept!
+                        </NavLink>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </Container>
+            <div className="page-info">
+              Page {currentPage} of {totalPages}
+            </div>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        ) : (
+          <p>Inga sökresultat</p>
+        )
+      ) : (
+        <div className="recipes">
+          <Button className="btn" onClick={() => navigate(-1)}>
+            Tillbaka
+          </Button>
+          <Container fluid>
+            <Row
+              xs={1}
+              sm={2}
+              md={3}
+              lg={4}
+              xl={5}
+              className="justify-content-center"
+            >
+              {recipes.map((recipe) => (
+                <Col key={recipe.id} className="mb-4">
+                  <Card>
+                    <Card.Img
+                      variant="top"
+                      src={`http://188.166.168.10/${recipe.image}`}
+                      alt={recipe.title}
+                    />
+                    <Card.Body>
+                      <Card.Title>{recipe.title}</Card.Title>
+                      <NavLink
+                        to={`/recipes/${recipe.id}`}
+                        className="btn btn-primary"
+                      >
+                        Se recept!
+                      </NavLink>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+          <div className="page-info">
+            Page {currentPage} of {totalPages}
+          </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </>
   );
 };
