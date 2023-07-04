@@ -1,12 +1,10 @@
-import { NavLink } from "react-router-dom";
-import Form from "../components/Form";
+import Navigation from "../components/Navigation";
 
 const Homepage = () => {
   return (
     <div>
-      <Form />
+      <Navigation />
       <h1>Hey good looking, what you got cooking?</h1>
-      <NavLink to="/recipes">Recipes</NavLink>
     </div>
   );
 };

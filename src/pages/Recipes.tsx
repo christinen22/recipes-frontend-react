@@ -93,25 +93,36 @@ const Recipes: React.FC = () => {
 
   return (
     <>
-      <Search onSearch={handleSearch} />
+      {/* <Search onSearch={handleSearch} /> */}
 
       <div className="recipes">
-        <Container>
-          <Row className="d-flex justify-content-center">
+        <Container fluid>
+          <Row
+            xs={1}
+            sm={2}
+            md={3}
+            lg={4}
+            xl={5}
+            className="justify-content-center"
+          >
             {recipes.map((recipe) => (
-              <Col xs={12} sm={4} md={4} key={recipe.id} className="m-3">
-                <Card className="recipeCards">
-                  <Card.Header className="align-items-center">
-                    <h2>{recipe.title}</h2>
-                    <img
-                      src={`http://188.166.168.10/${recipe.image}`}
-                      alt={recipe.title}
-                    />
-                  </Card.Header>
+              <Col key={recipe.id} className="mb-4">
+                <Card>
+                  <Card.Img
+                    variant="top"
+                    src={`http://188.166.168.10/${recipe.image}`}
+                    alt={recipe.title}
+                  />
+                  <Card.Body>
+                    <Card.Title>{recipe.title}</Card.Title>
+                    <NavLink
+                      to={`/recipes/${recipe.id}`}
+                      className="btn btn-primary"
+                    >
+                      Se recept!
+                    </NavLink>
+                  </Card.Body>
                 </Card>
-                <NavLink to={`/recipes/${recipe.id}`} key={recipe.id}>
-                  Se recept!
-                </NavLink>
               </Col>
             ))}
           </Row>

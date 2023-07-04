@@ -1,6 +1,8 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { createRecipe, getCategories } from "../services/api";
 import { ICategory } from "../types";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Form: React.FC = () => {
   const [formInput, setFormInput] = useState({
@@ -12,6 +14,7 @@ const Form: React.FC = () => {
     category_id: "",
   });
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -77,44 +80,51 @@ const Form: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        value={formInput.title}
-        onChange={handleChange}
-        placeholder="Recept"
-      />
-      <select
-        name="category_id"
-        value={formInput.category_id}
-        onChange={handleChange}
-      >
-        <option value="">Välj kategori</option>
-        {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        name="ingredients"
-        value={formInput.ingredients}
-        onChange={handleChange}
-        placeholder="Ingredienser"
-      />
-      <input
-        type="text"
-        name="body"
-        value={formInput.body}
-        onChange={handleChange}
-        placeholder="Gör så här"
-      />
+    <>
+      <div>
+        <Button type="button" className="btn" onClick={() => navigate(-1)}>
+          Tillbaka
+        </Button>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="title"
+          value={formInput.title}
+          onChange={handleChange}
+          placeholder="Recept"
+        />
+        <select
+          name="category_id"
+          value={formInput.category_id}
+          onChange={handleChange}
+        >
+          <option value="">Välj kategori</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          name="ingredients"
+          value={formInput.ingredients}
+          onChange={handleChange}
+          placeholder="Ingredienser"
+        />
+        <input
+          type="text"
+          name="body"
+          value={formInput.body}
+          onChange={handleChange}
+          placeholder="Gör så här"
+        />
 
-      <input type="file" name="image" onChange={handleImageChange} />
-      <button type="submit">Lägg till</button>
-    </form>
+        <input type="file" name="image" onChange={handleImageChange} />
+        <button type="submit">Lägg till</button>
+      </form>
+    </>
   );
 };
 

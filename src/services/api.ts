@@ -34,10 +34,10 @@ export const getCategories = async () => {
 }
 
 /**
- * Get single category
+ * Get recipe per category
  */
 
-export const getCategory = async (id: number) => {
+export const getRecipesByCategory = async (id: number) => {
     const res = await axios.get(`${baseUrl}/categories/${id}`)
 
     return res.data

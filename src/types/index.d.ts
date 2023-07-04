@@ -5,6 +5,7 @@ export interface IRecipe {
     body: string,
     image: string,
     category_id: number,
+    category_name: string,
 }
 
 
@@ -25,6 +26,7 @@ interface ICategory {
     created_at: string;
     updated_at: string | null;
     recipes_count: number;
+    recipes: IRecipe[]
 }
 
 export interface IFormData {
