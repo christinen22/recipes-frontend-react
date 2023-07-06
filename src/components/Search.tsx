@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Form, FormControl, Button } from "react-bootstrap";
+import { Form, FormControl, Button, Col, Row } from "react-bootstrap";
 
 interface SearchProps {
   onSearch: (query: string) => void;
@@ -24,24 +24,30 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const isQueryEmpty = query.trim() === "";
 
   return (
-    <Form className="d-flex align-items-center m-4" onSubmit={handleSubmit}>
-      <FormControl
-        className="searchInput"
-        type="text"
-        value={query}
-        onChange={handleChange}
-        placeholder="Sök recept"
-        style={{ fontSize: "0.6rem" }}
-      />
-      <Button
-        variant="secondary"
-        type="submit"
-        disabled={isQueryEmpty}
-        onClick={handleSearch}
-      >
-        Sök
-      </Button>
-    </Form>
+    <Row className="justify-content-center mt-4">
+      <Col xs={12} sm={8} md={6} lg={4}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="d-flex align-items-center">
+            <FormControl
+              className="searchInput"
+              type="text"
+              value={query}
+              onChange={handleChange}
+              placeholder="Sök recept"
+              style={{ fontSize: "0.9rem" }}
+            />
+            <Button
+              variant="secondary"
+              type="submit"
+              disabled={isQueryEmpty}
+              onClick={handleSearch}
+            >
+              Sök!
+            </Button>
+          </Form.Group>
+        </Form>
+      </Col>
+    </Row>
   );
 };
 

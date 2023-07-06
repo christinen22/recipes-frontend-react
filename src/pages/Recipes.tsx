@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { IRecipe } from "../types";
 import Search from "../components/Search";
 import { getRecipes } from "../services/api";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import Pagination from "../components/Pagination";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import Header from "../components/Header";
 
 const Recipes: React.FC = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -19,6 +20,7 @@ const Recipes: React.FC = () => {
   const [searchResults, setSearchResults] = useState<IRecipe[]>([]);
   const [searchDone, setSearchDone] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const fetchRecipes = async (page: number) => {
     //reset state
@@ -88,9 +90,9 @@ const Recipes: React.FC = () => {
     setCurrentPage(initialPage);
 
     if (searchDone) {
-      fetchSearchResults(currentPage);
+      fetchSearchResults(initialPage);
     } else {
-      fetchRecipes(currentPage);
+      fetchRecipes(initialPage);
     }
   }, [location.search]);
 
@@ -100,13 +102,14 @@ const Recipes: React.FC = () => {
 
   return (
     <>
+      <Header />
       <Search onSearch={handleSearch} />
       {loading && !(searchDone && searchResults.length > 0) && <Loading />}
 
       {searchDone ? (
         searchResults.length > 0 ? (
           <div className="recipes">
-            <Button className="btn" onClick={() => navigate(-1)}>
+            <Button className="back-btn" onClick={() => navigate(-1)}>
               Tillbaka
             </Button>
             <h3>Sökresultat</h3>
@@ -155,7 +158,7 @@ const Recipes: React.FC = () => {
         )
       ) : (
         <div className="recipes">
-          <Button className="btn" onClick={() => navigate(-1)}>
+          <Button className="back-btn" onClick={() => navigate(-1)}>
             Tillbaka
           </Button>
           <Container fluid>
