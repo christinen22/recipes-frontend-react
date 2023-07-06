@@ -8,10 +8,10 @@ export const baseUrl = 'http://188.166.168.10'
  */
 
 export const getRecipes = async (query: string, page: number): Promise<IRecipesResponse> => {
-    const res = await axios.get(`${baseUrl}/recipes/?search=${query}?page=${page}`)
+    const res = await axios.get(`${baseUrl}/recipes/?search=${query}&page=${page}`);
 
-    return res.data.data
-}
+    return res.data.data;
+};
 
 /**
  * Get single recipe
