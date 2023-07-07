@@ -127,7 +127,7 @@ const Recipes: React.FC = () => {
                     <Card>
                       <Card.Img
                         variant="top"
-                        src={`http://188.166.168.10/${recipe.image}`}
+                        src={`https://christinensapi.com/${recipe.image}`}
                         alt={recipe.title}
                       />
                       <Card.Body>
@@ -175,7 +175,7 @@ const Recipes: React.FC = () => {
                   <Card>
                     <Card.Img
                       variant="top"
-                      src={`http://188.166.168.10/${recipe.image}`}
+                      src={`https://christinensapi.com/${recipe.image}`}
                       alt={recipe.title}
                     />
                     <Card.Body>

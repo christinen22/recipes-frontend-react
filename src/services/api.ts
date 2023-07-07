@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IRecipe, IRecipesResponse } from "../types";
 
-export const baseUrl = 'http://188.166.168.10'
+export const baseUrl = 'https://christinensapi.com'
 
 /** 
  * Get Recipes
