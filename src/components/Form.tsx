@@ -3,6 +3,7 @@ import { createRecipe, getCategories } from "../services/api";
 import { ICategory } from "../types";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Resizer from "react-image-file-resizer";
 
 const Form: React.FC = () => {
   const [formInput, setFormInput] = useState({
@@ -49,6 +50,22 @@ const Form: React.FC = () => {
       });
     }
   };
+  const resizeImage = (file: File): Promise<Blob> => {
+    return new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        800,
+        800,
+        "JPEG",
+        80,
+        0,
+        (resizedImage) => {
+          resolve(resizedImage as Blob);
+        },
+        "blob"
+      );
+    });
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -60,7 +77,8 @@ const Form: React.FC = () => {
       recipeData.append("body", formInput.body);
       recipeData.append("ingredients", JSON.stringify(formInput.ingredients));
       if (formInput.image) {
-        recipeData.append("image", formInput.image);
+        const resizedImage = await resizeImage(formInput.image);
+        recipeData.append("image", resizedImage);
       }
       recipeData.append("category_id", formInput.category_id);
 
