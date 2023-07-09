@@ -1,9 +1,8 @@
-import React from "react";
-import { Container, Alert } from "react-bootstrap";
+import { Container, Alert, NavLink } from "react-bootstrap";
 
 const Header: React.FC = () => {
   return (
-    <Alert variant="primary" className="text-center">
+    <Alert variant="primary" className="text-center header-section">
       <Container>
         <h1 className="display-4">RUBRIK</h1>
       </Container>
