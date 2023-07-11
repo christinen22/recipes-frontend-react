@@ -4,6 +4,7 @@ import { getRecipesByCategory } from "../services/api";
 import { IRecipe } from "../types";
 import { useNavigate, NavLink } from "react-router-dom";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
+import Header from "../components/Header";
 
 interface RecipeDetails {
   id: string | undefined;
@@ -48,7 +49,7 @@ const CategoryRecipes: React.FC = () => {
   return (
     <>
       {/* <Search onSearch={handleSearch} /> */}
-
+      <Header />
       <div className="recipes">
         <Button type="button" className="btn" onClick={() => navigate(-1)}>
           Tillbaka
