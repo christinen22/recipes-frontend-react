@@ -114,19 +114,6 @@ const Form: React.FC = () => {
             onChange={handleChange}
             placeholder="Recept"
           />
-          <select
-            className="form-input"
-            name="category_id"
-            value={formInput.category_id}
-            onChange={handleChange}
-          >
-            <option value="">Välj kategori</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
           <input
             className="form-input"
             type="text"
@@ -143,7 +130,19 @@ const Form: React.FC = () => {
             onChange={handleChange}
             placeholder="Gör så här"
           />
-
+          <select
+            className="form-input"
+            name="category_id"
+            value={formInput.category_id}
+            onChange={handleChange}
+          >
+            <option value="">Välj kategori</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
           <input
             className="form-input"
             type="file"

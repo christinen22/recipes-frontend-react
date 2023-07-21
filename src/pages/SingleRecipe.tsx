@@ -59,7 +59,7 @@ const SingleRecipe: React.FC = () => {
                 <p>Gör så här: {recipe?.body}</p>
                 <Button
                   type="button"
-                  className="btn"
+                  className="back-btn"
                   onClick={() => navigate(-1)}
                 >
                   Tillbaka
