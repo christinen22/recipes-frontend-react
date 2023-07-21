@@ -37,8 +37,8 @@ export const getCategories = async () => {
  * Get recipe per category
  */
 
-export const getRecipesByCategory = async (id: number) => {
-    const res = await axios.get(`${baseUrl}/categories/${id}`)
+export const getRecipesByCategory = async (categoryId: number, page: number = 1) => {
+    const res = await axios.get(`${baseUrl}/categories/${categoryId}`)
 
     return res.data
 }

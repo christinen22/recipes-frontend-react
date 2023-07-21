@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { IRecipe } from "../types";
 import Search from "../components/Search";
-import { getRecipes } from "../services/api";
-import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import { getRecipes, getRecipesByCategory } from "../services/api";
+import { useNavigate, NavLink, useLocation, useParams } from "react-router-dom";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import Pagination from "../components/Pagination";
 import Loading from "../components/Loading";
@@ -21,6 +21,7 @@ const Recipes: React.FC = () => {
   const [searchDone, setSearchDone] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { category } = useParams<{ category: string | undefined }>();
 
   const fetchRecipes = async (page: number) => {
     //reset state
@@ -28,7 +29,15 @@ const Recipes: React.FC = () => {
     setIsError(false);
     setLoading(true);
     try {
-      const res = await getRecipes(query, page);
+      let res;
+      if (category) {
+        // Fetch recipes by category if category is provided
+        res = await getRecipesByCategory(Number(category), page);
+      } else {
+        // Fetch all recipes if no category is provided
+        res = await getRecipes(query, page);
+      }
+
       console.log(res.data);
       setRecipes(res.data);
       setTotalPages(Math.ceil(res.total / res.per_page));
@@ -83,6 +92,7 @@ const Recipes: React.FC = () => {
 
     setLoading(false);
   };
+
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const pageParam = urlParams.get("page");
@@ -94,7 +104,7 @@ const Recipes: React.FC = () => {
     } else {
       fetchRecipes(initialPage);
     }
-  }, [location.search]);
+  }, [location.search, category]); // Include category as a dependency to fetch recipes based on category change
 
   if (isError) {
     return <Error message={error || ""} />;

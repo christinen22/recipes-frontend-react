@@ -8,6 +8,7 @@ import desserts from "../assets/dessert.jpg";
 import bread from "../assets/bread.jpg";
 import create from "../assets/hero-bg.jpg";
 import Header from "./Header";
+
 const CategorySection: React.FC = () => {
   return (
     <div className="category-section">
