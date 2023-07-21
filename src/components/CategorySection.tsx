@@ -6,6 +6,9 @@ import vegeterian from "../assets/vegeterian.jpg";
 import pork from "../assets/pork.jpg";
 import desserts from "../assets/dessert.jpg";
 import bread from "../assets/bread.jpg";
+import breakfast from "../assets/breakfast.jpg";
+import houseman from "../assets/houseman.jpg";
+import pasta from "../assets/pasta.jpg";
 import create from "../assets/hero-bg.jpg";
 import Header from "./Header";
 
@@ -62,6 +65,40 @@ const CategorySection: React.FC = () => {
             </Card.Body>
           </Card>
         </Col>
+        <Col xs={12} sm={6} md={4} lg={3}>
+          <Card className="category-card">
+            <Card.Img variant="top" src={pasta} alt="Pasta Category" />
+            <Card.Body>
+              <Card.Title>Pasta</Card.Title>
+              <NavLink to="/categories/9" className="btn btn-primary">
+                Utforska
+              </NavLink>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col xs={12} sm={6} md={4} lg={3}>
+          <Card className="category-card">
+            <Card.Img variant="top" src={houseman} alt="Houseman Category" />
+            <Card.Body>
+              <Card.Title>Husmanskost</Card.Title>
+              <NavLink to="/categories/8" className="btn btn-primary">
+                Utforska
+              </NavLink>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col xs={12} sm={6} md={4} lg={3}>
+          <Card className="category-card">
+            <Card.Img variant="top" src={breakfast} alt="Breakfast Category" />
+            <Card.Body>
+              <Card.Title>Frukost</Card.Title>
+              <NavLink to="/categories/7" className="btn btn-primary">
+                Utforska
+              </NavLink>
+            </Card.Body>
+          </Card>
+        </Col>
+
         <Col xs={12} sm={6} md={4} lg={3}>
           <Card className="category-card">
             <Card.Img variant="top" src={desserts} alt="Dessert Category" />
