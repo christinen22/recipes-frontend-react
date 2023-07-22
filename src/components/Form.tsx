@@ -10,7 +10,7 @@ const Form: React.FC = () => {
     title: "",
     category: "",
     body: "",
-    ingredients: "",
+    ingredients: [] as string[],
     image: null as File | null,
     category_id: "",
   });
@@ -43,7 +43,7 @@ const Form: React.FC = () => {
       const formattedValue = value.replace(/\r/g, "");
       setFormInput({
         ...formInput,
-        [name]: formattedValue,
+        [name]: formattedValue.split("\n"), // Split the input by new lines and store as an array
       });
     } else {
       setFormInput({
@@ -100,7 +100,7 @@ const Form: React.FC = () => {
         title: "",
         category: "",
         body: "",
-        ingredients: "",
+        ingredients: [] as string[],
         image: null,
         category_id: "",
       });
