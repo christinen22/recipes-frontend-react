@@ -34,7 +34,7 @@ const Form: React.FC = () => {
   }, []);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     setFormInput({
       ...formInput,
@@ -114,17 +114,15 @@ const Form: React.FC = () => {
             onChange={handleChange}
             placeholder="Recept"
           />
-          <input
+          <textarea
             className="form-input"
-            type="text"
             name="ingredients"
             value={formInput.ingredients}
             onChange={handleChange}
             placeholder="Ingredienser"
           />
-          <input
+          <textarea
             className="form-input"
-            type="text"
             name="body"
             value={formInput.body}
             onChange={handleChange}
