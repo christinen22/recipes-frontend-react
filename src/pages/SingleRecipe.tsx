@@ -50,6 +50,13 @@ const SingleRecipe: React.FC = () => {
       <Container>
         <Col>
           <Card className="recipeCard">
+            <Button
+              type="button"
+              className="back-btn"
+              onClick={() => navigate(-1)}
+            >
+              Tillbaka
+            </Button>
             <Card.Header className="align-items-center">
               <h3>{recipe?.title}</h3>
             </Card.Header>
@@ -57,13 +64,6 @@ const SingleRecipe: React.FC = () => {
               <Card.Text>
                 <p>Ingredienser: {recipe?.ingredients}</p>
                 <p>Gör så här: {recipe?.body}</p>
-                <Button
-                  type="button"
-                  className="back-btn"
-                  onClick={() => navigate(-1)}
-                >
-                  Tillbaka
-                </Button>
               </Card.Text>
               <Card.Img
                 src={`https://christinensapi.com/${recipe?.image}`}
