@@ -38,9 +38,9 @@ const Form: React.FC = () => {
   ) => {
     const { name, value } = e.target;
 
-    // For "Ingredienser" and "Gör så här" fields, remove asterisks and trim the input
+    // For "Ingredienser" and "Gör så här" fields, handle line breaks
     if (name === "ingredients" || name === "body") {
-      const formattedValue = value.replace(/\*/g, "").trim();
+      const formattedValue = value.replace(/\r/g, "");
       setFormInput({
         ...formInput,
         [name]: formattedValue,
