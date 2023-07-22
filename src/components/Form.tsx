@@ -78,11 +78,6 @@ const Form: React.FC = () => {
     });
   };
 
-  const formatInputText = (text: string) => {
-    // Replace \n with actual new lines
-    return text.replace(/\\n/g, "\n");
-  };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -126,7 +121,7 @@ const Form: React.FC = () => {
             className="form-input"
             type="text"
             name="title"
-            value={formatInputText(formInput.ingredients)}
+            value={formInput.title}
             onChange={handleChange}
             placeholder="Recept"
           />
@@ -140,7 +135,7 @@ const Form: React.FC = () => {
           <textarea
             className="form-input"
             name="body"
-            value={formatInputText(formInput.ingredients)}
+            value={formInput.body}
             onChange={handleChange}
             placeholder="Gör så här"
           />
@@ -148,7 +143,6 @@ const Form: React.FC = () => {
             className="form-input"
             name="category_id"
             value={formInput.category_id}
-            onChange={handleChange}
           >
             <option value="">Välj kategori</option>
             {categories.map((category) => (
