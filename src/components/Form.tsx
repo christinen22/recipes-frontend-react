@@ -34,12 +34,23 @@ const Form: React.FC = () => {
   }, []);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormInput({
-      ...formInput,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    // For "Ingredienser" and "Gör så här" fields, remove asterisks and trim the input
+    if (name === "ingredients" || name === "body") {
+      const formattedValue = value.replace(/\*/g, "").trim();
+      setFormInput({
+        ...formInput,
+        [name]: formattedValue,
+      });
+    } else {
+      setFormInput({
+        ...formInput,
+        [name]: value,
+      });
+    }
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +76,11 @@ const Form: React.FC = () => {
         "blob"
       );
     });
+  };
+
+  const formatInputText = (text: string) => {
+    // Replace \n with actual new lines
+    return text.replace(/\\n/g, "\n");
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -110,7 +126,7 @@ const Form: React.FC = () => {
             className="form-input"
             type="text"
             name="title"
-            value={formInput.title}
+            value={formatInputText(formInput.ingredients)}
             onChange={handleChange}
             placeholder="Recept"
           />
@@ -124,7 +140,7 @@ const Form: React.FC = () => {
           <textarea
             className="form-input"
             name="body"
-            value={formInput.body}
+            value={formatInputText(formInput.ingredients)}
             onChange={handleChange}
             placeholder="Gör så här"
           />
