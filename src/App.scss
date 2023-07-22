@@ -22,13 +22,19 @@
    margin-left: 2rem;
     //height: 75vh;
     width: 75vw;
+    height: auto;
     border-radius: 2rem;
     //padding-right: 2rem;
-    overflow: hidden;
+    //overflow: hidden;
     position: relative;
     color: white;
-    border: 1px solid black;
+    //border: 1px solid black;
   
+}
+
+.card-img {
+  background-color: #fff;
+  border-radius: 2rem;
 }
 
 h1{
@@ -206,6 +212,12 @@ h2 {
   border-radius: 4px;
   font-size: 16px;
 }
+img.card-img-top {
+ height: 200px;
+  width: 250px;
+}
+
+
 
 
 /*  media queries for responsiveness */
@@ -225,3 +237,10 @@ h2 {
     flex: 1;
   }
 }
+
+@media (max-width: 566px) {
+  img.card-img-top {
+    width: 100%;
+    height: auto;
+  }
+  }
