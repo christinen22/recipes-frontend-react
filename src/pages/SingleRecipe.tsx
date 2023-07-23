@@ -62,7 +62,15 @@ const SingleRecipe: React.FC = () => {
             </Card.Header>
             <Card.Body>
               <Card.Text>
-                <p>Ingredienser: {recipe?.ingredients}</p>
+                <p>
+                  Ingredienser:{" "}
+                  {recipe?.ingredients.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </p>
                 <p>Gör så här: {recipe?.body}</p>
               </Card.Text>
               <Card.Img

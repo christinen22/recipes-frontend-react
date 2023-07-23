@@ -4,7 +4,6 @@ import { ICategory } from "../types";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
-
 const Form: React.FC = () => {
   const [formInput, setFormInput] = useState({
     title: "",
@@ -17,40 +16,28 @@ const Form: React.FC = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await getCategories();
         console.log(response);
-
         setCategories(response);
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchCategories();
   }, []);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
 
-    // For "Ingredienser" and "Gör så här" fields, handle line breaks
-    if (name === "ingredients" || name === "body") {
-      const formattedValue = value.replace(/\r/g, "");
-      setFormInput({
-        ...formInput,
-        [name]: formattedValue.split("\n"), // Split the input by new lines and store as an array
-      });
-    } else {
-      setFormInput({
-        ...formInput,
-        [name]: value,
-      });
-    }
+    setFormInput((prevFormInput) => ({
+      ...prevFormInput,
+      [name]: value,
+    }));
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -77,10 +64,8 @@ const Form: React.FC = () => {
       );
     });
   };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
     try {
       const recipeData = new FormData();
       recipeData.append("title", formInput.title);
@@ -92,9 +77,7 @@ const Form: React.FC = () => {
         recipeData.append("image", resizedImage);
       }
       recipeData.append("category_id", formInput.category_id);
-
       const createdRecipe = await createRecipe(recipeData);
-
       console.log(createdRecipe);
       setFormInput({
         title: "",
@@ -109,7 +92,6 @@ const Form: React.FC = () => {
       console.error(error);
     }
   };
-
   return (
     <>
       <button className="btn" onClick={() => navigate(-1)}>
@@ -176,5 +158,4 @@ const Form: React.FC = () => {
     </>
   );
 };
-
 export default Form;
