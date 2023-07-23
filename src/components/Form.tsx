@@ -34,7 +34,7 @@ const Form: React.FC = () => {
   }, []);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
 
@@ -143,6 +143,7 @@ const Form: React.FC = () => {
             className="form-input"
             name="category_id"
             value={formInput.category_id}
+            onChange={handleChange}
           >
             <option value="">Välj kategori</option>
             {categories.map((category) => (
