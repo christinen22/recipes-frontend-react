@@ -26,6 +26,7 @@ const SingleRecipe: React.FC = () => {
         if (id) {
           const recipeData = await getRecipe(Number(id));
           setRecipe(recipeData);
+          console.log(recipeData);
         }
         setLoading(false);
       } catch (err: any) {
@@ -63,13 +64,16 @@ const SingleRecipe: React.FC = () => {
             <Card.Body>
               <Card.Text>
                 <p>
-                  Ingredienser:{" "}
-                  {recipe?.ingredients.split("\n").map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      <br />
-                    </span>
-                  ))}
+                  Ingredienser:
+                  {recipe?.ingredients.split("\\n").map(function (item, key) {
+                    return (
+                      <span key={key}>
+                        <br />
+                        {item}
+                        <br />
+                      </span>
+                    );
+                  })}
                 </p>
                 <p>Gör så här: {recipe?.body}</p>
               </Card.Text>
