@@ -79,6 +79,7 @@ const Form: React.FC = () => {
       recipeData.append("category_id", formInput.category_id);
       const createdRecipe = await createRecipe(recipeData);
       console.log(createdRecipe);
+
       setFormInput({
         title: "",
         category: "",

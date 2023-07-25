@@ -66,16 +66,21 @@ const SingleRecipe: React.FC = () => {
                 <p>
                   Ingredienser:
                   {recipe?.ingredients.split("\\n").map(function (item, key) {
+                    // Remove the quotation marks from the ingredient
+                    const ingredientWithoutQuotes = item.replace(/"/g, "");
                     return (
                       <span key={key}>
                         <br />
-                        {item}
-                        <br />
+                        {ingredientWithoutQuotes}
                       </span>
                     );
                   })}
                 </p>
-                <p>Gör så här: {recipe?.body}</p>
+
+                <p>
+                  Gör så här:
+                  <br /> {recipe?.body}{" "}
+                </p>
               </Card.Text>
               <Card.Img
                 src={`https://christinensapi.com/${recipe?.image}`}
