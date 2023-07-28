@@ -1,11 +1,11 @@
 export interface IRecipe {
-    id: number,
-    title: string,
-    ingredients: string,
-    body: string,
-    image: string,
-    category_id: number,
-    category_name: string,
+    id: number;
+    title: string;
+    ingredients: string[];
+    body: string;
+    image: string;
+    category_id: number;
+    category_name: string;
 }
 
 
