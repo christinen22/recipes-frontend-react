@@ -71,6 +71,10 @@ const SingleRecipe: React.FC = () => {
                   <br></br>
                   {recipe?.ingredients}
                 </pre>
+                <p>
+                  Gör så här:
+                  <br /> {recipe?.body}{" "}
+                </p>
               </Card.Text>
               <Card.Img
                 src={`https://christinensapi.com/${recipe?.image}`}
