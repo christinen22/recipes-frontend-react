@@ -34,10 +34,19 @@ const Form: React.FC = () => {
   ) => {
     const { name, value } = e.target;
 
-    setFormInput((prevFormInput) => ({
-      ...prevFormInput,
-      [name]: value,
-    }));
+    if (name === "ingredients") {
+      // Convert the single string to an array of strings using line breaks
+      const ingredientsArray = value.split("\n");
+      setFormInput((prevFormInput) => ({
+        ...prevFormInput,
+        [name]: ingredientsArray,
+      }));
+    } else {
+      setFormInput((prevFormInput) => ({
+        ...prevFormInput,
+        [name]: value,
+      }));
+    }
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,12 +80,18 @@ const Form: React.FC = () => {
       recipeData.append("title", formInput.title);
       recipeData.append("category", formInput.category);
       recipeData.append("body", formInput.body);
-      recipeData.append("ingredients", JSON.stringify(formInput.ingredients));
+
+      // Append each ingredient separately
+      formInput.ingredients.forEach((ingredient) => {
+        recipeData.append("ingredients[]", ingredient);
+      });
+
       if (formInput.image) {
         const resizedImage = await resizeImage(formInput.image);
         recipeData.append("image", resizedImage);
       }
       recipeData.append("category_id", formInput.category_id);
+
       const createdRecipe = await createRecipe(recipeData);
       console.log(createdRecipe);
 
@@ -93,6 +108,7 @@ const Form: React.FC = () => {
       console.error(error);
     }
   };
+
   return (
     <>
       <button className="btn" onClick={() => navigate(-1)}>
@@ -111,10 +127,11 @@ const Form: React.FC = () => {
           <textarea
             className="form-input"
             name="ingredients"
-            value={formInput.ingredients}
+            value={formInput.ingredients.join("\n")}
             onChange={handleChange}
             placeholder="Ingredienser"
           />
+
           <textarea
             className="form-input"
             name="body"

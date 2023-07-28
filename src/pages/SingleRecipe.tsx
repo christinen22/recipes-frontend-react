@@ -46,6 +46,8 @@ const SingleRecipe: React.FC = () => {
     return <Error message={error || ""} />;
   }
 
+  console.log("Recipe ingredients:", recipe?.ingredients);
+
   return (
     <>
       <Container>
@@ -63,24 +65,12 @@ const SingleRecipe: React.FC = () => {
             </Card.Header>
             <Card.Body>
               <Card.Text>
-                <p>
+                {/* use the pre-tag to preserve line breaks set in database */}
+                <pre>
                   Ingredienser:
-                  {recipe?.ingredients.split("\\n").map(function (item, key) {
-                    // Remove the quotation marks from the ingredient
-                    const ingredientWithoutQuotes = item.replace(/"/g, "");
-                    return (
-                      <span key={key}>
-                        <br />
-                        {ingredientWithoutQuotes}
-                      </span>
-                    );
-                  })}
-                </p>
-
-                <p>
-                  Gör så här:
-                  <br /> {recipe?.body}{" "}
-                </p>
+                  <br></br>
+                  {recipe?.ingredients}
+                </pre>
               </Card.Text>
               <Card.Img
                 src={`https://christinensapi.com/${recipe?.image}`}
