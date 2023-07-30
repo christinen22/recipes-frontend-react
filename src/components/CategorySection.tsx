@@ -21,9 +21,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={chicken} alt="Chicken Category" />
             <Card.Body>
-              <Card.Title>Kyckling</Card.Title>
               <NavLink to="/categories/1" className="btn btn-primary">
-                Utforska
+                Kyckling
               </NavLink>
             </Card.Body>
           </Card>
@@ -32,9 +31,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={beef} alt="Beef Category" />
             <Card.Body>
-              <Card.Title>Nötkött</Card.Title>
               <NavLink to="/categories/2" className="btn btn-primary">
-                Utforska
+                Nötkött
               </NavLink>
             </Card.Body>
           </Card>
@@ -47,9 +45,8 @@ const CategorySection: React.FC = () => {
               alt="Vegeterian Category"
             />
             <Card.Body>
-              <Card.Title>Vegetariskt</Card.Title>
               <NavLink to="/categories/3" className="btn btn-primary">
-                Utforska
+                Vegetariskt
               </NavLink>
             </Card.Body>
           </Card>
@@ -58,9 +55,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={pork} alt="Pork Category" />
             <Card.Body>
-              <Card.Title>Fläskkött</Card.Title>
               <NavLink to="/categories/4" className="btn btn-primary">
-                Utforska
+                Fläskkött
               </NavLink>
             </Card.Body>
           </Card>
@@ -69,9 +65,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={pasta} alt="Pasta Category" />
             <Card.Body>
-              <Card.Title>Pasta</Card.Title>
               <NavLink to="/categories/9" className="btn btn-primary">
-                Utforska
+                Pasta
               </NavLink>
             </Card.Body>
           </Card>
@@ -80,9 +75,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={houseman} alt="Houseman Category" />
             <Card.Body>
-              <Card.Title>Husmanskost</Card.Title>
               <NavLink to="/categories/8" className="btn btn-primary">
-                Utforska
+                Husmanskost
               </NavLink>
             </Card.Body>
           </Card>
@@ -91,9 +85,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={breakfast} alt="Breakfast Category" />
             <Card.Body>
-              <Card.Title>Frukost</Card.Title>
               <NavLink to="/categories/7" className="btn btn-primary">
-                Utforska
+                Frukost
               </NavLink>
             </Card.Body>
           </Card>
@@ -103,9 +96,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={desserts} alt="Dessert Category" />
             <Card.Body>
-              <Card.Title>Dessert</Card.Title>
               <NavLink to="/categories/5" className="btn btn-primary">
-                Utforska
+                Dessert
               </NavLink>
             </Card.Body>
           </Card>
@@ -114,9 +106,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={bread} alt="Bread Category" />
             <Card.Body>
-              <Card.Title>Bakat</Card.Title>
               <NavLink to="/categories/6" className="btn btn-primary">
-                Utforska
+                Bakat
               </NavLink>
             </Card.Body>
           </Card>
@@ -125,9 +116,8 @@ const CategorySection: React.FC = () => {
           <Card className="category-card">
             <Card.Img variant="top" src={create} alt="Create Category" />
             <Card.Body>
-              <Card.Title>Registrera ditt eget recept!</Card.Title>
               <NavLink to="/create" className="btn btn-primary">
-                Kör!
+                Skapa ditt egna recept
               </NavLink>
             </Card.Body>
           </Card>
